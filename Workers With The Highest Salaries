@@ -1,0 +1,6 @@
+SELECT
+    worker_title AS best_paid_title 
+FROM worker
+JOIN title 
+ON worker_id = worker_ref_id
+WHERE salary=(SELECT MAX(salary) FROM worker)
