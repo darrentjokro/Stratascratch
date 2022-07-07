@@ -1,0 +1,12 @@
+-- find top based on total number of reviews
+--OUTPUT = CATEGORY, TOTAL NUMBER REVIEW 
+--order by total review desc 
+with total_category as(
+select unnest(string_to_array(categories, ';')) AS category, review_count
+from yelp_business
+)
+
+select category, sum(review_count) as total
+from total_category
+group by category
+order by total desc
