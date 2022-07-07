@@ -1,0 +1,3 @@
+select distinct host_id, guest_id
+from airbnb_hosts a1 
+join airbnb_guests a2 on a1.nationality = a2.nationality AND a1.gender = a2.gender
