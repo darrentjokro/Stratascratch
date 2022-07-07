@@ -1,0 +1,8 @@
+with sales AS(
+select first_name, target, rank() over(order by target DESC) as max_ti
+from salesforce_employees
+where manager_id = '13')
+
+select first_name, target
+from sales
+where max_ti ='1'
