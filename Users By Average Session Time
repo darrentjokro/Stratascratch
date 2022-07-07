@@ -1,0 +1,13 @@
+with all_user_session as(
+select a.user_id, a.timestamp :: date as date ,
+        min(b.timestamp) - max(a.timestamp) as session_duration
+    FROM facebook_web_log a
+    join facebook_web_log b on a.user_id = b.user_id
+    where a.action ='page_load'
+        and b.action = 'page_exit'
+        and b.timestamp > a.timestamp
+        group by a.user_id, date )
+        
+select user_id, avg(session_duration)
+from all_user_session
+group by user_id
