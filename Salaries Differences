@@ -1,0 +1,7 @@
+SELECT 
+ABS(MAX(CASE WHEN department = 'marketing' THEN salary ELSE NULL END) -
+MAX(CASE WHEN department = 'engineering' THEN salary ELSE NULL END)) AS DIFF
+
+FROM db_employee de 
+LEFT JOIN db_dept dd 
+ON de.department_id = dd.id;
